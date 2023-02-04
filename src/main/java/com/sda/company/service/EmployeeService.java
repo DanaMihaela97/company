@@ -15,7 +15,7 @@ public interface EmployeeService {
     void generateEmployee(List<Employee> employeeList);
 
     List<EmployeeShortInfoDto> getAllEmployees();
-    Optional<EmployeeInfoDto> findEmployeeByName(String name);
+    EmployeeInfoDto findEmployeeByName(String name);
    void updateEmployeeSalary(String name, Long salary);
    void updateEmployeeTitle(String name, JobTitle jobTitle);
    Optional<EmployeeInfoDto> getEmployeeById(Integer id);
@@ -24,5 +24,8 @@ public interface EmployeeService {
     void updateEmplSalary(Integer id, Long salary);
     void updateEmpJobTitle(Integer id, JobTitle jobTitle);
     void deleteEmployeeById(Integer id);
+    List<EmployeeShortInfoDto> findAllByCompanyId(Integer companyId);
+
+
 
 }

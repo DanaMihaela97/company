@@ -4,10 +4,8 @@ import com.sda.company.convertor.CompanyConvertor;
 import com.sda.company.dto.CompanyCreateDto;
 import com.sda.company.dto.CompanyInfoDto;
 import com.sda.company.dto.CompanyShortInfoDto;
-import com.sda.company.dto.EmployeeShortInfoDto;
 import com.sda.company.exception.CompanyException;
 import com.sda.company.model.Company;
-import com.sda.company.model.Employee;
 import com.sda.company.repository.CompanyRepository;
 import com.sda.company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +16,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CompanyServiceImpl implements CompanyService {
+public class CompanyServiceImpl2 implements CompanyService {
     // service face legatura cu repository
 
     // @Autowired - field injection => not recommended
     private final CompanyRepository companyRepository;
 
     @Autowired
-    public CompanyServiceImpl(CompanyRepository companyRepository) {
+    public CompanyServiceImpl2(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 

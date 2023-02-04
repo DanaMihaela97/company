@@ -19,6 +19,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/employee")
+@ControllerAdvice
 public class
 EmployeeController {
     private final EmployeeService employeeService;
@@ -54,8 +55,8 @@ EmployeeController {
     }
 
     @GetMapping("/getEmployeeByName")
-    public ResponseEntity<Optional<EmployeeInfoDto>> getEmployeeByName(@RequestParam String name) {
-        Optional<EmployeeInfoDto> employeeInfoDto = employeeService.findEmployeeByName(name);
+    public ResponseEntity<EmployeeInfoDto> getEmployeeByName(@RequestParam String name) {
+        EmployeeInfoDto employeeInfoDto = employeeService.findEmployeeByName(name);
         return ResponseEntity.ok(employeeInfoDto);
     }
 
@@ -96,6 +97,10 @@ EmployeeController {
     public ResponseEntity<String> deleteEmployeeById(@RequestParam Integer id){
         employeeService.deleteEmployeeById(id);
         return ResponseEntity.ok("Employee deleted!");
+    }
+    @GetMapping("/getEmployeesByCompanyId")
+    public ResponseEntity<List<EmployeeShortInfoDto>> getCompanyEmployeeList(@RequestParam Integer companyId){
+        return ResponseEntity.ok(employeeService.findAllByCompanyId(companyId));
     }
 
 }

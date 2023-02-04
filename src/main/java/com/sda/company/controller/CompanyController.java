@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/company")
+@ControllerAdvice
 public class CompanyController {
     // controller face legatura cu service
     private final CompanyService companyService;
@@ -34,15 +35,13 @@ public class CompanyController {
     @GetMapping("/getAllCompanies")
     public ResponseEntity<List<CompanyShortInfoDto>> getAllCompanies () {
         List<CompanyShortInfoDto> allCompanies = companyService.getAllCompanies();
-
         return ResponseEntity.ok(allCompanies);
         // return ResponseEntity.ok(companyService.getAllCompanies()); => alternative
     }
     @GetMapping("/findCompanyByName")
     public ResponseEntity<CompanyInfoDto> getCompanyByName(@RequestParam String name) {
-        Optional<CompanyInfoDto> companyInfoDto = companyService.findCompanyByName(name);
-
-        return ResponseEntity.of(companyInfoDto);
+        CompanyInfoDto companyInfoDto = companyService.findCompanyByName(name);
+        return ResponseEntity.ok(companyInfoDto);
     }
 
     @GetMapping("/generateCompanies")
@@ -60,5 +59,6 @@ public class CompanyController {
         companyService.deleteCompany(id);
         return ResponseEntity.ok("Company deleted!");
     }
+
 
 }

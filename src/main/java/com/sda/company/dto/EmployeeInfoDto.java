@@ -17,7 +17,7 @@ public class EmployeeInfoDto {
     private String phoneNumber;
     private Long salary;
     private Integer id;
-    private Company company;
+    private CompanyShortInfoDto companyShortInfoDto;
 
 
 

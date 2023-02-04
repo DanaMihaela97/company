@@ -1,10 +1,9 @@
 package com.sda.company.service.impl;
 
+import com.sda.company.convertor.CompanyConvertor;
 import com.sda.company.convertor.EmployeeConvertor;
-import com.sda.company.dto.EmployeeCreateDto;
-import com.sda.company.dto.EmployeeInfoDto;
-import com.sda.company.dto.EmployeeShortInfoDto;
-import com.sda.company.dto.JobTitle;
+import com.sda.company.dto.*;
+import com.sda.company.exception.EmployeeException;
 import com.sda.company.model.Company;
 import com.sda.company.model.Employee;
 import com.sda.company.repository.CompanyRepository;
@@ -54,13 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<EmployeeInfoDto> findEmployeeByName(String name) {
-        Optional<Employee> employee = employeeRepository.findEmployeeByName(name);
-        EmployeeInfoDto employeeInfoDto = null;
-        if (employee.isPresent()){
-            employeeInfoDto = EmployeeConvertor.convertEmployeeEntityToInfoDto(employee.get());
-        }
-        return Optional.ofNullable(employeeInfoDto);
+    public EmployeeInfoDto findEmployeeByName(String name) {
+        Employee employee = employeeRepository.findEmployeeByName(name)
+                .orElseThrow(()->new EmployeeException(("Employee with name: " + name + " not found!")));
+
+        return EmployeeConvertor.convertEmployeeEntityToInfoDto(employee);
     }
 
     @Override
@@ -128,6 +125,32 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void deleteEmployeeById(Integer id) {
         employeeRepository.deleteById(id);
     }
+
+    @Override
+    public List<EmployeeShortInfoDto> findAllByCompanyId(Integer companyId) {
+       List<Employee> employees = employeeRepository.findAllByCompanyId(companyId);
+       List<EmployeeShortInfoDto> response = new ArrayList<>();
+
+       employees.forEach(employee->{response.add(EmployeeConvertor.convertEmployeeEntityToShortInfoDto(employee));});
+       return response;
+    }
+
+   /* @Override
+    public EmployeeInfoDto employeePersonToCompany(Integer companyId, Integer employeeId) {
+        Optional<Company> company = companyRepository.findById(companyId);
+        Optional<Employee> employee=employeeRepository.getEmployeesById(employeeId);
+        EmployeeInfoDto employeeInfoDto = null;
+        CompanyInfoDto companyInfoDto=null;
+        if (employee.isPresent()){
+            employeeInfoDto = EmployeeConvertor.convertEmployeeEntityToInfoDto(employee.get());
+        }
+       if(company.isPresent()){
+           companyInfoDto = CompanyConvertor.convertEntityToInfoDto(company.get());
+       }
+       return Optional.ofNullable(employeeInfoDto);
+         */
+
+
 
 
 }

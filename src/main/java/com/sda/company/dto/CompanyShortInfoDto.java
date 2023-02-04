@@ -21,6 +21,7 @@ public class CompanyShortInfoDto {
     public void setRegistrationNumber(Long registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
+
 }
 
 

@@ -1,5 +1,6 @@
 package com.sda.company.convertor;
 
+import com.sda.company.dto.CompanyShortInfoDto;
 import com.sda.company.dto.EmployeeCreateDto;
 import com.sda.company.dto.EmployeeInfoDto;
 import com.sda.company.dto.EmployeeShortInfoDto;
@@ -19,6 +20,7 @@ public class EmployeeConvertor {
     }
     public static EmployeeInfoDto convertEmployeeEntityToInfoDto(Employee employee){
         EmployeeInfoDto employeeInfoDto = new EmployeeInfoDto();
+        CompanyShortInfoDto companyShortInfoDto = new CompanyShortInfoDto();
         employeeInfoDto.setName(employee.getName());
         employeeInfoDto.setCnp(employee.getCnp());
         employeeInfoDto.setEmail(employee.getEmail());
@@ -26,8 +28,15 @@ public class EmployeeConvertor {
         employeeInfoDto.setPhoneNumber(employee.getPhoneNumber());
         employeeInfoDto.setId(employee.getId());
         employeeInfoDto.setSalary(employee.getSalary());
-         employeeInfoDto.setCompany(employee.getCompany());
 
+        if(employee.getCompany()!=null){
+        companyShortInfoDto.setName(employee.getCompany().getName());
+        companyShortInfoDto.setRegistrationNumber(employee.getCompany().getRegistrationNumber());
+        employeeInfoDto.setCompanyShortInfoDto(companyShortInfoDto);
+        }
+        else{
+            employeeInfoDto.setCompanyShortInfoDto(null);
+        }
         return employeeInfoDto;
     }
     public static EmployeeShortInfoDto convertEmployeeEntityToShortInfoDto(Employee employee){

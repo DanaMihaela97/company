@@ -78,4 +78,10 @@ public class Company{
     public void setEmployees(Employee employee) {
         this.employees=employees;
     }
+    public List<Employee> employees(){
+        return employees();
+    }
+    public void setEmployees(List<Employee> employees){
+        this.employees=employees;
+    }
 }
