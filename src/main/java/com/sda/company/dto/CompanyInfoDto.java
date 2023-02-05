@@ -8,6 +8,15 @@ public class CompanyInfoDto {
     private String address;
     private String phoneNumber;
     private Integer id; // ce vede user ul in front end. field uri care ne intereseaza
+    private String createdBy;
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public Integer getId() {
         return id;

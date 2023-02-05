@@ -6,9 +6,11 @@ import com.sda.company.dto.CompanyShortInfoDto;
 import com.sda.company.service.CompanyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,14 +22,15 @@ public class CompanyController {
     private final CompanyService companyService;
     private final CustomFakerCompany customFakerCompany;
     @Autowired // am injectat
-    public CompanyController(CompanyService companyService, CustomFakerCompany customFakerCompany) {
+    public CompanyController(@Qualifier("companyServiceImpl") CompanyService companyService, CustomFakerCompany customFakerCompany) {
         this.companyService = companyService;
         this.customFakerCompany = customFakerCompany;
     }
 
     // CREATE COMPANY
     @PostMapping("/create")
-    public ResponseEntity<CompanyInfoDto> createCompany(@RequestBody @Valid CompanyCreateDto companyCreateDto){
+    public ResponseEntity<CompanyInfoDto> createCompany(@RequestBody @Valid CompanyCreateDto companyCreateDto, Principal principal){
+        companyCreateDto.setCreatedBy(principal.getName());
         CompanyInfoDto companyInfoDto = companyService.createCompany(companyCreateDto);                     // apelam metoda de createCompany din IMPL
          return ResponseEntity.ok(companyInfoDto);
     }

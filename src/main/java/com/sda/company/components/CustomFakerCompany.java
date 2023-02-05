@@ -21,6 +21,7 @@ public class CustomFakerCompany {
             company.setAddress(faker.address().fullAddress());
             company.setPhoneNumber(faker.phoneNumber().phoneNumber());
             company.setEmail(faker.bothify("?????##@company.com")); // regex
+            company.setCreatedBy("custom faker");
 
             dummyCompanies.add(company);
         }

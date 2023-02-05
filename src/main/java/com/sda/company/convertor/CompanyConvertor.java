@@ -13,6 +13,7 @@ public class CompanyConvertor {
         company.setEmail(companyCreateDto.getEmail());
         company.setPhoneNumber(companyCreateDto.getPhoneNumber());
         company.setRegistrationNumber(companyCreateDto.getRegistrationNumber());
+        company.setCreatedBy(companyCreateDto.getCreatedBy());
 
         return company;
     }
@@ -24,6 +25,7 @@ public class CompanyConvertor {
         companyInfoDto.setPhoneNumber(company.getPhoneNumber());
         companyInfoDto.setRegistrationNumber(company.getRegistrationNumber());
         companyInfoDto.setId(company.getId());
+        companyInfoDto.setCreatedBy(company.getCreatedBy());
 
         return companyInfoDto;
 

@@ -20,6 +20,15 @@ public class CompanyCreateDto {
      private String address;
 
      private String phoneNumber;
+     private String createdBy;
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public String getName() {
         return name;
