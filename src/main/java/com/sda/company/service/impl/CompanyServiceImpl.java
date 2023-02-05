@@ -74,7 +74,13 @@ public class CompanyServiceImpl implements CompanyService {
         companyRepository.deleteById(id);
     }
 
+    @Override
+    public List<CompanyInfoDto> getCompaniesFullInfo() {
+        List<CompanyInfoDto> companyInfoDtos = new ArrayList<>();
+        companyRepository.findAll().forEach(company -> companyInfoDtos.add(CompanyConvertor.convertEntityToInfoDto(company)));
 
+        return companyInfoDtos;
+    }
 
 
 }

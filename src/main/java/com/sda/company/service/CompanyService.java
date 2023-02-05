@@ -19,6 +19,7 @@ public interface CompanyService {
     void generateCompanies(List<Company> companies);
     Optional<CompanyInfoDto> getCompanyById(Integer id);
     void deleteCompany(Integer id);
+    List<CompanyInfoDto> getCompaniesFullInfo();
 
 
 

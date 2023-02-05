@@ -62,6 +62,10 @@ public class CompanyController {
         companyService.deleteCompany(id);
         return ResponseEntity.ok("Company deleted!");
     }
-
+    @GetMapping("/getAllCompaniesFullDetails")
+    public ResponseEntity<List<CompanyInfoDto>> getFullDetails(){
+        List<CompanyInfoDto> companyInfoDtos = companyService.getCompaniesFullInfo();
+        return ResponseEntity.ok(companyInfoDtos);
+    }
 
 }
